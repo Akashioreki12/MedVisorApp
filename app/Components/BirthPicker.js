@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View , StyleSheet} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
 function BirthPicker(props) {
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -12,7 +11,6 @@ function BirthPicker(props) {
     setDate(currentDate);
     // Additional logic if needed with the selected date
   };
-
   return (
     <View>
           <DateTimePicker
@@ -31,7 +29,6 @@ export default BirthPicker;
 
 const styles = StyleSheet.create({
     dateTimePicker: {
-        
     borderRadius: 8, // Set border radius
         marginTop: 20,
   },
