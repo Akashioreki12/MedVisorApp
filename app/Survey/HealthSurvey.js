@@ -2,6 +2,12 @@ import React from 'react';
 
 import { View, StyleSheet, Text } from 'react-native';
 import ChoiceButton from '../Components/ChoiceButton';
+import MultipleBoxChoice from '../Components/MultipleBoxChoice';
+import ValueInput from '../Components/ValueInput';
+import BoldCrossIcon from '../assets/Icons/BoldCrossIcon';
+import NoSmokeIcon from '../assets/Icons/NoSmokeIcon';
+import SmokeIcon from '../assets/Icons/SmokeIcon';
+import UnknownIcon from '../assets/Icons/UnknownIcon';
 
 function HealthSurvey(props) {
     return (
@@ -26,6 +32,7 @@ function HealthSurvey(props) {
                 </View>
 
                 <View style={styles.answerContainer}>
+                    <MultipleBoxChoice leftIcon={<BoldCrossIcon/>} centerLeftIcon={<NoSmokeIcon/>} centerRightIcon={<SmokeIcon/>} rightIcon={<UnknownIcon/>}/>
                 </View>
 
             
@@ -38,7 +45,7 @@ function HealthSurvey(props) {
 
                 </View>
                 <View style={styles.answerContainer}>
-                                    <ChoiceButton leftChoiceLabel={"Yes"} rightChoiceLabel={'No'}/>            
+                    <ValueInput/>
                 </View>            
             </View>
             <View style={styles.surveyQuestion4}>
@@ -49,7 +56,9 @@ function HealthSurvey(props) {
                     
 
                 </View>
-<View style={styles.answerContainer}>
+                <View style={styles.answerContainer}>
+                    
+                    <ValueInput/>
                 </View>
             </View>
         </View>
