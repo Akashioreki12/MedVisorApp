@@ -4,13 +4,7 @@ import ChoiceButton from '../Components/ChoiceButton';
 import SimpleBoxChoice from '../Components/SimpleBoxChoice';
 import BirthPicker from '../Components/BirthPicker';
 
-function InformationSurvey(props) {
-    const [currentPosition, setCurrentPosition] = useState(0);
-
-    const onPageChange = (position) => {
-        setCurrentPosition(position);
-    };
-
+function InformationSurvey({genderSetter,ageSetter,marriedSetter,locationSetter}) {
     return (
         <View style={styles.container}>
             
@@ -20,7 +14,7 @@ function InformationSurvey(props) {
                     
                 </View>
                 <View style={styles.answerContainer}>
-                                    <ChoiceButton leftChoiceLabel={"Male"} rightChoiceLabel={'Female'}/>            
+                                    <ChoiceButton leftChoiceLabel={"Male"} rightChoiceLabel={'Female'} setChoice={genderSetter} />            
                 </View>
             </View>
 
@@ -33,7 +27,7 @@ function InformationSurvey(props) {
                 </View>
 
                 <View style={styles.answerContainer}>
-                                    <BirthPicker/>          
+                                    <BirthPicker setChoice={ageSetter}/>          
                 </View>
 
             
@@ -46,7 +40,7 @@ function InformationSurvey(props) {
 
                 </View>
                 <View style={styles.answerContainer}>
-                                    <ChoiceButton leftChoiceLabel={"Yes"} rightChoiceLabel={'No'}/>            
+                                    <ChoiceButton leftChoiceLabel={"Yes"} rightChoiceLabel={'No'} setChoice={marriedSetter}/>            
                 </View>            
             </View>
             <View style={styles.surveyQuestion4}>
@@ -58,7 +52,7 @@ function InformationSurvey(props) {
 
                 </View>
 <View style={styles.answerContainer}>
-                <SimpleBoxChoice/>          
+                <SimpleBoxChoice setChoice={locationSetter}/>          
                 </View>
             </View>
         </View>
@@ -73,6 +67,7 @@ const styles = StyleSheet.create({
         height :'100%',
     },
     surveyQuestion1: {
+        paddingTop : '4%',
         height: '25%',
     },
     surveyQuestion2: {

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
 
-function ChoiceButton({ leftChoiceLabel, rightChoiceLabel }) {
+function ChoiceButton({ leftChoiceLabel, rightChoiceLabel, setChoice }) {
   const [selectedChoice, setSelectedChoice] = useState(leftChoiceLabel);
 
   const handleChoicePress = (choice) => {
-    setSelectedChoice(choice);
+      setSelectedChoice(choice);
+      setChoice(choice);
   };
 
     return (
@@ -20,7 +21,7 @@ function ChoiceButton({ leftChoiceLabel, rightChoiceLabel }) {
         <Text
           style={[
             styles.choiceText,
-            { color: selectedChoice === leftChoiceLabel ? '#fff' : '#000' },
+            { color: selectedChoice === leftChoiceLabel ? '#fff' : '#1A7DDE' },
           ]}
         >
           {leftChoiceLabel}
@@ -36,17 +37,15 @@ function ChoiceButton({ leftChoiceLabel, rightChoiceLabel }) {
         <Text
           style={[
             styles.choiceText,
-            { color: selectedChoice === rightChoiceLabel ? '#fff' : '#000' },
+            { color: selectedChoice === rightChoiceLabel ? '#fff' : '#1A7DDE' },
           ]}
         >
           {rightChoiceLabel}
         </Text>
       </TouchableOpacity>
-    </View>
-    
+    </View>   
   );
 }
-
 export default ChoiceButton;
 const styles = StyleSheet.create({
   container: {

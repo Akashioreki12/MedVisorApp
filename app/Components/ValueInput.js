@@ -1,26 +1,27 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, TextInput} from 'react-native';
 
-function ValueInput(props) {
+function ValueInput({setChoice})
+{
+      const [inputText, setInputText] = useState('');
+
+    const handleInputChange = (text) => {
+        setInputText(text);
+        setChoice(text);
+  };
     return (
         <View style={styles.container}>
             
             <TouchableOpacity style={styles.Increment}><Text style={styles.textIncrement}>+
             </Text>
-                
-            
             </TouchableOpacity>
-
             <TextInput
               placeholder="55.26"
-              style={styles.input}
+                style={styles.input}
+                              onChangeText={handleInputChange}
+
             />
             <TouchableOpacity style={styles.Decrement}><Text  style={styles.textIncrement}>-</Text></TouchableOpacity>
-
-
-            
-
-
         </View>
     );
 }

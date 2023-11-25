@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { View, StyleSheet, Text } from 'react-native';
 import ChoiceButton from '../Components/ChoiceButton';
 import MultipleBoxChoice from '../Components/MultipleBoxChoice';
@@ -9,7 +8,7 @@ import NoSmokeIcon from '../assets/Icons/NoSmokeIcon';
 import SmokeIcon from '../assets/Icons/SmokeIcon';
 import UnknownIcon from '../assets/Icons/UnknownIcon';
 
-function HealthSurvey(props) {
+function HealthSurvey({heartDiseaseSetter,smokeSetter,glucoseLevelSetter,bmiLevelSetter}) {
     return (
          <View style={styles.container}>
             
@@ -19,7 +18,7 @@ function HealthSurvey(props) {
                     
                 </View>
                 <View style={styles.answerContainer}>
-                                    <ChoiceButton leftChoiceLabel={"No"} rightChoiceLabel={'Yes'}/>            
+                                    <ChoiceButton leftChoiceLabel={"No"} rightChoiceLabel={'Yes'} setChoice={heartDiseaseSetter}/>            
                 </View>
             </View>
 
@@ -32,7 +31,7 @@ function HealthSurvey(props) {
                 </View>
 
                 <View style={styles.answerContainer}>
-                    <MultipleBoxChoice leftIcon={<BoldCrossIcon/>} centerLeftIcon={<NoSmokeIcon/>} centerRightIcon={<SmokeIcon/>} rightIcon={<UnknownIcon/>}/>
+                    <MultipleBoxChoice leftIcon={<BoldCrossIcon/>} centerLeftIcon={<NoSmokeIcon/>} centerRightIcon={<SmokeIcon/>} rightIcon={<UnknownIcon/>} setChoice={smokeSetter}/>
                 </View>
 
             
@@ -45,7 +44,7 @@ function HealthSurvey(props) {
 
                 </View>
                 <View style={styles.answerContainer}>
-                    <ValueInput/>
+                    <ValueInput setChoice={glucoseLevelSetter}/>
                 </View>            
             </View>
             <View style={styles.surveyQuestion4}>
@@ -58,7 +57,7 @@ function HealthSurvey(props) {
                 </View>
                 <View style={styles.answerContainer}>
                     
-                    <ValueInput/>
+                    <ValueInput setChoice={bmiLevelSetter}/>
                 </View>
             </View>
         </View>
@@ -74,6 +73,7 @@ const styles = StyleSheet.create({
         height :'100%',
     },
     surveyQuestion1: {
+         paddingTop : '4%',
         height: '25%',
     },
     surveyQuestion2: {
@@ -97,6 +97,8 @@ const styles = StyleSheet.create({
     }, 
 
     answerContainer: {
-      alignItems : 'center',  
+        alignItems: 'center',  
+                justifyContent : 'center',
+
     },
 })

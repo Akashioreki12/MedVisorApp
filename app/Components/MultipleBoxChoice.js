@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 
-function MultipleBoxChoice({ leftIcon, centerLeftIcon, centerRightIcon, rightIcon }) {
+function MultipleBoxChoice({ leftIcon, centerLeftIcon, centerRightIcon, rightIcon, setChoice }) {
   const [selectedBox, setSelectedBox] = useState('centerRight');
 
   const handleBoxPress = (box) => {
-    setSelectedBox(box);
+      setSelectedBox(box);
+      setChoice(box);
   };
   return (
     <View style={styles.container}>

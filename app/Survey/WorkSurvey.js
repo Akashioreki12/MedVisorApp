@@ -8,43 +8,30 @@ import GovernmentIcon from '../assets/Icons/GovernmentIcon';
 import EmployeeIcon from '../assets/Icons/EmployeeIcon';
 import ChildrenIcon from '../assets/Icons/ChildrenIcon';
 
-function WorkSurvey(props) {
+function WorkSurvey({workSetter}) {
     return (
          <View style={styles.container}>
-            
             <View style={styles.surveyQuestion1}>
                 <View style={styles.questionContainer}>
                     <Text style={styles.question}>What is your work type ?</Text>
-                    
                 </View>
                 <View style={styles.answerContainer}>
-                                    <MultipleBoxChoice leftIcon={<SuitCaseIcon/>} centerLeftIcon={<GovernmentIcon/>} centerRightIcon={<EmployeeIcon/>} rightIcon={<ChildrenIcon/>}/>          
+                                    <MultipleBoxChoice leftIcon={<SuitCaseIcon/>} centerLeftIcon={<GovernmentIcon/>} centerRightIcon={<EmployeeIcon/>} rightIcon={<ChildrenIcon/>} setChoice={workSetter}/>          
                 </View>
             </View>
-
             <View style={styles.surveyQuestion2}>
-
                 <View style={styles.questionContainer}>
-
-
                 </View>
-
                 <View style={styles.answerContainer}>
                 </View>
-
-            
             </View>
             <View style={styles.surveyQuestion3}>
-
                 <View style={styles.questionContainer}>
-
-
                 </View>
                 <View style={styles.answerContainer}>
                 </View>            
             </View>
             <View style={styles.surveyQuestion4}>
-
                 <View style={styles.questionContainer}>
                 </View>
                 <View style={styles.answerContainer}>                    
@@ -64,6 +51,7 @@ const styles = StyleSheet.create({
     },
     surveyQuestion1: {
         height: '25%',
+                paddingTop : '4%',
     },
     surveyQuestion2: {
         height: '25%',
@@ -74,17 +62,14 @@ const styles = StyleSheet.create({
     surveyQuestion4: {
         height: '25%',
     },
-
     question: {
         color: '#383838',
         fontSize : 18,
     },
-
     questionContainer: {
         paddingLeft: '5%',
         marginBottom : '5%',
     }, 
-
     answerContainer: {
       alignItems : 'center',  
     },
