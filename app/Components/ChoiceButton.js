@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(70,119,238,0.3)',
     flexDirection: 'row',
     width: '70%',
-    height: '60%',
+    height: '55%',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 100,
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
   choiceText: {
     fontSize: 20,
   },
-
   leftChoice: {
     width: '50%',
     height: '80%',

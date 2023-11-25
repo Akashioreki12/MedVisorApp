@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 
   leftBox: {
     borderWidth: 2,
-    height: '8%',
+    height: '50%',
     width: '30%',
     marginRight: '2%',
     justifyContent: 'center',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   rightBox: {
     borderWidth: 2,
-    height: '8%',
+    height: '50%',
     width: '30%',
     justifyContent: 'center',
     alignItems: 'center',

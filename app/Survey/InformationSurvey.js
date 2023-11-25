@@ -3,6 +3,8 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } fro
 import CrossMarkIcon from '../assets/Icons/CrossMarkIcon';
 import StepIndicator from 'react-native-step-indicator';
 import ChoiceButton from '../Components/ChoiceButton';
+import SimpleBoxChoice from '../Components/SimpleBoxChoice';
+import BirthPicker from '../Components/BirthPicker';
 
 function InformationSurvey(props) {
     const labels = ["Information", "Health", "Work"];
@@ -57,6 +59,9 @@ function InformationSurvey(props) {
 
                 </View>
 
+                <View style={styles.answerContainer}>
+                                    <BirthPicker/>          
+                </View>
 
             
             </View>
@@ -69,27 +74,23 @@ function InformationSurvey(props) {
                 </View>
                 <View style={styles.answerContainer}>
                                     <ChoiceButton leftChoiceLabel={"Yes"} rightChoiceLabel={'No'}/>            
-                </View>
-
-
-            
+                </View>            
             </View>
             <View style={styles.surveyQuestion4}>
 
                 <View style={styles.questionContainer}>
-                                                    <Text style={styles.question}>Where do you live ?</Text>
+                    <Text style={styles.question}>Where do you live ?</Text>
 
+                    
 
                 </View>
-
-
-            
+<View style={styles.answerContainer}>
+                <SimpleBoxChoice/>          
+                </View>
             </View>
-            
         </View>
     );
 }
-
 
 export default InformationSurvey;
 const styles = StyleSheet.create({
