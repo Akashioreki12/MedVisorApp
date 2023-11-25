@@ -53,14 +53,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(70,119,238,0.3)',
     flexDirection: 'row',
     width: '70%',
-    height: '5%',
+    height: '60%',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 100,
-    paddingLeft: '1%',
-    paddingRight: '1%',
+    paddingLeft: '2%',
+    paddingRight: '2%',
   },
-
   choiceText: {
     fontSize: 20,
   },
