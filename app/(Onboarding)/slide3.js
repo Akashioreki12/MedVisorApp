@@ -29,18 +29,18 @@ const slide3 = () => {
       </View>
       <View
         style={{
-          backgroundColor: "#ffffff", 
+          backgroundColor: "#ffffff",
           width: "100%",
           height: "40%",
           alignItems: "center",
           justifyContent: "center",
           borderTopLeftRadius: "40%",
           borderTopRightRadius: "40%",
-          elevation: 5, 
-          shadowColor: "#000", 
-          shadowOffset: { width: 0, height: 2 }, 
-          shadowOpacity: 0.5, 
-          shadowRadius: 5, 
+          elevation: 5,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.5,
+          shadowRadius: 5,
         }}
       >
         <Text
@@ -92,7 +92,7 @@ const slide3 = () => {
             justifyContent: "center",
             marginVertical: "1%",
           }}
-          onPress={() => router.replace("/slide2")}
+          onPress={() => router.push("/SurveyForm")}
         >
           <Text style={{ color: "white", fontSize: 14, fontWeight: "normal" }}>
             Commencer

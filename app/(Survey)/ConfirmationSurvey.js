@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 function ConfirmationSurvey(props) {
     return (
         <View>
+            
 
             <View style={styles.part1}></View>
                         <View style={styles.part2}></View>
