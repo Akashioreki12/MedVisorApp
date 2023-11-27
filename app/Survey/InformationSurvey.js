@@ -52,7 +52,7 @@ function InformationSurvey({genderSetter,ageSetter,marriedSetter,locationSetter}
 
                 </View>
 <View style={styles.answerContainer}>
-                <SimpleBoxChoice setChoice={locationSetter}/>          
+                <SimpleBoxChoice setChoice={locationSetter} leftChoiceLabel={"Rural"} rightChoiceLabel={"Urban"}/>          
                 </View>
             </View>
         </View>

@@ -11,18 +11,20 @@ import LeftArrowIcon from '../assets/Icons/LeftArrowIcon';
 import BubblesIcon from '../assets/Icons/BubblesIcon';
 function SurveyForm(props)
 {   
-
-    const [gender, setGender] = useState("autre");
+    const [gender, setGender] = useState("Male");
     const [age, setAge] = useState(0);
-    const [married, setMarried] = useState("yes");
-    const [location, setLocation] = useState("urban");
-    const [heartDisease, setHeartDisease] = useState("yes");
-    const [smoke, setSmoke] = useState("yes");
+    const [married, setMarried] = useState("Yes");
+    const [location, setLocation] = useState("Rural");
+    const [heartDisease, setHeartDisease] = useState(0);
+    const [smoke, setSmoke] = useState("smokes");
     const [glucoseLevel, setGlucoseLevel] = useState(0);
     const [bmiLevel, setBMIlevel] = useState(0);
-    const [work, setWork] = useState("gov");
-
-
+    const [work, setWork] = useState("Private");
+    const [hypertension, setHypertension] = useState(0);
+    const handleHypertensionSelect = (hypertension) =>
+    {
+        setHypertension(hypertension);
+    }
     const handleGenderSelect = (gender) =>
     {
         setGender(gender);
@@ -60,21 +62,58 @@ function SurveyForm(props)
         setWork(Work);
     }
 
+    const sendDataToApi = async () => {
+  try {
+    const apiEndpoint = 'http://172.20.10.5:8080/medicalimageprocessing/v1/surveys/create';
+    const requestData = {
+  
+       gender: gender,
+      workType: work,
+      residenceType: location,
+      smokingStatus: smoke,
+      age: age,
+      avgGlucoseLevel: glucoseLevel,
+      bmi: bmiLevel,
+      hypertension: hypertension === "Yes" ? 1 : 0,
+      heartDisease: heartDisease,
+      everMarried: married === "Yes" ? 1 : 0,
+}
 
-    const submit =  () =>
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log('API Response:', responseData);
+  } catch (error) {
+    console.error('Error sending data to API:', error.message);
+  }
+};
+
+    const submit = () =>
     {
 
         console.log(gender);
         console.log(age);
+        console.log(work);
         console.log(married);
-        console.log(location);
-        console.log(smoke);
-        console.log(glucoseLevel);
+        console.log(hypertension);
+        console.log(heartDisease);
         console.log(bmiLevel);
-        console.log(work)
-        
-    }
+        console.log(smoke);
+        console.log(location);
+        console.log(glucoseLevel);
+        sendDataToApi();
 
+    }
 
 
 
@@ -102,7 +141,7 @@ function SurveyForm(props)
             case 1:
                 return <HealthScreen heartDiseaseSetter={handleDiseaseSelect} smokeSetter={handleSmokeSelect} glucoseLevelSetter={handleGlucoseLevelSelect} bmiLevelSetter={handleBMILevelSelect} />;
             case 2:
-                return <WorkScreen  workSetter={handleWorkSelect}/>;
+                return <WorkScreen  workSetter={handleWorkSelect} hypertensionSetter={handleHypertensionSelect}/>;
             default:
                 return null;
         }

@@ -31,7 +31,7 @@ function HealthSurvey({heartDiseaseSetter,smokeSetter,glucoseLevelSetter,bmiLeve
                 </View>
 
                 <View style={styles.answerContainer}>
-                    <MultipleBoxChoice leftIcon={<BoldCrossIcon/>} centerLeftIcon={<NoSmokeIcon/>} centerRightIcon={<SmokeIcon/>} rightIcon={<UnknownIcon/>} setChoice={smokeSetter}/>
+                    <MultipleBoxChoice leftIcon={<BoldCrossIcon/>} centerLeftIcon={<NoSmokeIcon/>} centerRightIcon={<SmokeIcon/>} rightIcon={<UnknownIcon/>} setChoice={smokeSetter} leftLabelChoice={"never smoked"} centerLeftLabelChoice={"formerly smoked"} centerRightLabelChoice={"smokes"} rightLabelChoice={"Unknown"}/>
                 </View>
 
             

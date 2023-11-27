@@ -8,8 +8,14 @@ function BirthPicker({setChoice}) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
-      setDate(currentDate);
-      setChoice(date);
+    setDate(currentDate);
+    
+
+    const currentDateObject = new Date();
+    const selected = new Date(currentDate)
+    const ageSeconds = currentDateObject - selected;
+    const age = Math.floor(ageSeconds / (365.25 * 24 * 60 * 60 * 1000));
+      setChoice(age);
     // Additional logic if needed with the selected date
   };
   return (

@@ -3,31 +3,32 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import CountrySideIcon from '../assets/Icons/CountrySideIcon';
 import CityIcon from '../assets/Icons/CityIcon';
 
-function SimpleBoxChoice(props) {
-  const [selectedBox, setSelectedBox] = useState('left');
+function SimpleBoxChoice({setChoice, leftChoiceLabel,rightChoiceLabel}) {
+  const [selectedBox, setSelectedBox] = useState(leftChoiceLabel);
 
   const handleBoxPress = (box) => {
-    setSelectedBox(box);
+      setSelectedBox(box);
+      setChoice(box);
   };
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={[
           styles.leftBox,
-          { borderColor: selectedBox === 'left' ? '#1578DA' : '#F1F1F1' },
+          { borderColor: selectedBox === leftChoiceLabel ? '#1578DA' : '#F1F1F1' },
         ]}
-        onPress={() => handleBoxPress('left')}
+        onPress={() => handleBoxPress(leftChoiceLabel)}
       >
-              <CountrySideIcon color={selectedBox === 'left' ? '#1578DA' : '#F1F1F1'} />
+              <CountrySideIcon color={selectedBox === leftChoiceLabel ? '#1578DA' : '#F1F1F1'} />
           </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.rightBox,
-          { borderColor: selectedBox === 'right' ? '#1578DA' : '#F1F1F1' },
+          { borderColor: selectedBox === rightChoiceLabel ? '#1578DA' : '#F1F1F1' },
         ]}
-        onPress={() => handleBoxPress('right')}
+        onPress={() => handleBoxPress(rightChoiceLabel)}
       >
-              <CityIcon color={selectedBox === 'right' ? '#1578DA' : '#F1F1F1'} />
+              <CityIcon color={selectedBox === rightChoiceLabel ? '#1578DA' : '#F1F1F1'} />
           </TouchableOpacity>
     </View>
   );

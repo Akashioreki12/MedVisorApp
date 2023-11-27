@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 
-function MultipleBoxChoice({ leftIcon, centerLeftIcon, centerRightIcon, rightIcon, setChoice }) {
-  const [selectedBox, setSelectedBox] = useState('centerRight');
+function MultipleBoxChoice({ leftIcon, centerLeftIcon, centerRightIcon, rightIcon, setChoice, leftLabelChoice, centerLeftLabelChoice,centerRightLabelChoice,rightLabelChoice }) {
+  const [selectedBox, setSelectedBox] = useState(centerRightLabelChoice);
 
   const handleBoxPress = (box) => {
       setSelectedBox(box);
@@ -13,40 +13,40 @@ function MultipleBoxChoice({ leftIcon, centerLeftIcon, centerRightIcon, rightIco
       <TouchableOpacity
         style={[
           styles.box,
-          { borderColor: selectedBox === 'left' ? '#1578DA' : '#F1F1F1' },
+          { borderColor: selectedBox === leftLabelChoice ? '#1578DA' : '#F1F1F1' },
         ]}
-        onPress={() => handleBoxPress('left')}
+        onPress={() => handleBoxPress(leftLabelChoice)}
       >
-              {React.cloneElement(leftIcon, { color: selectedBox === 'left' ? '#1578DA' : '#F1F1F1' })}
+              {React.cloneElement(leftIcon, { color: selectedBox === leftLabelChoice ? '#1578DA' : '#F1F1F1' })}
           </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.box,
-          { borderColor: selectedBox === 'centerLeft' ? '#1578DA' : '#F1F1F1' },
+          { borderColor: selectedBox === centerLeftLabelChoice ? '#1578DA' : '#F1F1F1' },
         ]}
-        onPress={() => handleBoxPress('centerLeft')}
+        onPress={() => handleBoxPress(centerLeftLabelChoice)}
       >
-              {React.cloneElement(centerLeftIcon, { color: selectedBox === 'centerLeft' ? '#1578DA' : '#F1F1F1' })}
+              {React.cloneElement(centerLeftIcon, { color: selectedBox === centerLeftLabelChoice ? '#1578DA' : '#F1F1F1' })}
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[
           styles.box,
-          { borderColor: selectedBox === 'centerRight' ? '#1578DA' : '#F1F1F1' },
+          { borderColor: selectedBox === centerRightLabelChoice ? '#1578DA' : '#F1F1F1' },
         ]}
-        onPress={() => handleBoxPress('centerRight')}
+        onPress={() => handleBoxPress(centerRightLabelChoice)}
       >
-              {React.cloneElement(centerRightIcon, { color: selectedBox === 'centerRight' ? '#1578DA': '#F1F1F1' })}
+              {React.cloneElement(centerRightIcon, { color: selectedBox === centerRightLabelChoice ? '#1578DA': '#F1F1F1' })}
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[
           styles.box,
-          { borderColor: selectedBox === 'right' ? '#1578DA' : '#F1F1F1' },
+          { borderColor: selectedBox === rightLabelChoice ? '#1578DA' : '#F1F1F1' },
         ]}
-        onPress={() => handleBoxPress('right')}
+        onPress={() => handleBoxPress(rightLabelChoice)}
       >
-              {React.cloneElement(rightIcon, { color: selectedBox === 'right' ? '#1578DA' : '#F1F1F1' })}
+              {React.cloneElement(rightIcon, { color: selectedBox === rightLabelChoice ? '#1578DA' : '#F1F1F1' })}
       </TouchableOpacity>
     </View>
   );

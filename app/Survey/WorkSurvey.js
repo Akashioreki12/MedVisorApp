@@ -7,8 +7,9 @@ import SuitCaseIcon from '../assets/Icons/SuitCaseIcon';
 import GovernmentIcon from '../assets/Icons/GovernmentIcon';
 import EmployeeIcon from '../assets/Icons/EmployeeIcon';
 import ChildrenIcon from '../assets/Icons/ChildrenIcon';
+import ChoiceButton from '../Components/ChoiceButton';
 
-function WorkSurvey({workSetter}) {
+function WorkSurvey({workSetter, hypertensionSetter}) {
     return (
          <View style={styles.container}>
             <View style={styles.surveyQuestion1}>
@@ -16,13 +17,16 @@ function WorkSurvey({workSetter}) {
                     <Text style={styles.question}>What is your work type ?</Text>
                 </View>
                 <View style={styles.answerContainer}>
-                                    <MultipleBoxChoice leftIcon={<SuitCaseIcon/>} centerLeftIcon={<GovernmentIcon/>} centerRightIcon={<EmployeeIcon/>} rightIcon={<ChildrenIcon/>} setChoice={workSetter}/>          
+                                    <MultipleBoxChoice leftIcon={<SuitCaseIcon/>} centerLeftIcon={<GovernmentIcon/>} centerRightIcon={<EmployeeIcon/>} rightIcon={<ChildrenIcon/>} setChoice={workSetter} leftLabelChoice={"Private"} centerLeftLabelChoice={"Govt_job"} centerRightLabelChoice={"Self-employed"} rightLabelChoice={"children"}/>          
                 </View>
             </View>
             <View style={styles.surveyQuestion2}>
                 <View style={styles.questionContainer}>
+                    <Text style={styles.question}>Do you have hypertension ?</Text>
+                    
                 </View>
                 <View style={styles.answerContainer}>
+                                    <ChoiceButton leftChoiceLabel={"No"} rightChoiceLabel={'Yes'} setChoice={hypertensionSetter}/>            
                 </View>
             </View>
             <View style={styles.surveyQuestion3}>
