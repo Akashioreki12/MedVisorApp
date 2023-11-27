@@ -63,11 +63,14 @@ function SurveyForm(props)
     }
 
     const sendDataToApi = async () => {
-  try {
+        try
+        {
+      
+        
     const apiEndpoint = 'http://172.20.10.5:8080/medicalimageprocessing/v1/surveys/create';
+   
     const requestData = {
-  
-       gender: gender,
+        gender: gender,
       workType: work,
       residenceType: location,
       smokingStatus: smoke,
@@ -75,8 +78,10 @@ function SurveyForm(props)
       avgGlucoseLevel: glucoseLevel,
       bmi: bmiLevel,
       hypertension: hypertension === "Yes" ? 1 : 0,
-      heartDisease: heartDisease,
+      heartDisease: heartDisease === "Yes" ? 1 : 0,
       everMarried: married === "Yes" ? 1 : 0,
+
+    
 }
 
     const response = await fetch(apiEndpoint, {
