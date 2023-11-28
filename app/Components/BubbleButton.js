@@ -2,9 +2,9 @@ import React from 'react';
 
 function BubbleButton(props) {
   return (
-    <View>
-
-    </View>
+    <TouchableOpacity onPress={() => router.push("/Result")}>
+      <View></View>
+    </TouchableOpacity>
   );
 }
 
