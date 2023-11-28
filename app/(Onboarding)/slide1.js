@@ -1,9 +1,9 @@
 import { View, Text , Image , TouchableOpacity} from 'react-native'
 import React from 'react'
-import logo from '../../assets/logo.jpeg'
-import doc1 from '../../assets/doc1.png'
-import Backball from "../../components/backball1";
-import Silder from "../../components/sliderIcon1";
+import logo from '../assets/Images/logo.jpeg'
+import doc1 from '../assets/Images/doc1.png'
+import Backball from "../Components/backball1";
+import Silder from "../Components/sliderIcon1";
 import { router } from "expo-router";
 
 

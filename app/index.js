@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-const doc = require("../assets/doctora.png");
+const doc = require("../app/assets/Images/doctora.png");
 export default function Page() {
   return (
     <LinearGradient

@@ -1,12 +1,12 @@
 
-import logo from "../../assets/logo.jpeg";
+import logo from "../assets/Images/logo.jpeg";
 import * as React from "react";
 import { Text, StatusBar, View, StyleSheet ,Image} from "react-native";
 import Constants from "expo-constants";
-import Donut from "../../components/donut";
-import Bulls from "../../components/bulls";
-import Wireframe from "../../components/wireframe";
-import Risks from "../../components/risks";
+import Donut from "../Components/donut";
+import Bulls from "../Components/bulls";
+import Wireframe from "../Components/wireframe";
+import Risks from "../Components/risks";
 
 const data = [
   {
