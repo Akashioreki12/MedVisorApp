@@ -3,6 +3,7 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } fro
 import CrossMarkIcon from '../assets/Icons/CrossMarkIcon';
 import StepIndicator from 'react-native-step-indicator';
 import { Modal } from 'react-native';
+import { router } from "expo-router";
 // Import your different survey screens here
 import InformationScreen from './InformationSurvey';
 import HealthScreen from './HealthSurvey';
@@ -79,11 +80,8 @@ function SurveyForm(props)
       bmi: bmiLevel,
       hypertension: hypertension === "Yes" ? 1 : 0,
       heartDisease: heartDisease === "Yes" ? 1 : 0,
-      everMarried: married === "Yes" ? 1 : 0,
-
-    
+      everMarried: married === "Yes" ? 1 : 0, 
 }
-
     const response = await fetch(apiEndpoint, {
       method: 'POST',
       headers: {
@@ -95,7 +93,6 @@ function SurveyForm(props)
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
     const responseData = await response.json();
     console.log('API Response:', responseData);
   } catch (error) {
@@ -117,6 +114,7 @@ function SurveyForm(props)
         console.log(location);
         console.log(glucoseLevel);
         sendDataToApi();
+        router.push("/Result");
 
     }
 
@@ -172,6 +170,7 @@ function SurveyForm(props)
         } else if (currentPosition === labels.length - 1) {
             setModalVisible(true);
             submit();
+
         }
     };
 

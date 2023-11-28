@@ -10,10 +10,10 @@ import Risks from "../../components/risks";
 
 const data = [
   {
-    percentage: 50,
+    percentage: 70,
     color: "#147FDF",
     max: 100,
-    radius: 100,
+    radius: 120,
     strokeWidth: 20,
   },
 ];
@@ -33,7 +33,7 @@ export default function App() {
           <Bulls />
         </View>
 
-        <View className="items-center justify-center w-[70%] absolute">
+        <View className="items-center justify-center w-[60%] absolute">
           <Wireframe />
         </View>
 
