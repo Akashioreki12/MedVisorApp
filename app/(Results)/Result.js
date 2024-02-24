@@ -1,12 +1,11 @@
-
 import logo from "../assets/Images/logo.jpeg";
 import * as React from "react";
-import { Text, StatusBar, View, StyleSheet ,Image} from "react-native";
-import Constants from "expo-constants";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Donut from "../Components/donut";
 import Bulls from "../Components/bulls";
 import Wireframe from "../Components/wireframe";
 import Risks from "../Components/risks";
+import { router } from "expo-router";
 
 const data = [
   {
@@ -19,59 +18,52 @@ const data = [
 ];
 
 export default function App() {
+  const navigateToHome = () => {
+    router.replace("/SurveyForm");
+  };
+
   return (
-    <View>
-      <View className=" w-full h-[7%] items-center justify-center">
-        <Image
-          resizeMode="contain"
-          source={logo}
-          className=" w-[85%] h-[80%]  "
-        />
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={navigateToHome}>
+        <Text style={styles.backButtonText}>Refaire le Test</Text>
+      </TouchableOpacity>
+
+      <View style={styles.logoContainer}>
+        <Image resizeMode="contain" source={logo} style={styles.logo} />
       </View>
-      <View className=" w-full h-[50%] items-center justify-center">
-        <View className="items-center justify-center w-[70%] absolute">
+      <View style={styles.middleContainer}>
+        <View style={styles.bullsContainer}>
           <Bulls />
         </View>
 
-        <View className="items-center justify-center w-[60%] absolute">
+        <View style={styles.wireframeContainer}>
           <Wireframe />
         </View>
 
-        {data.map((p, i) => {
-          return (
-            <Donut
-              key={i}
-              percentage={p.percentage}
-              color={p.color}
-              delay={500 + 100 * i}
-              max={p.max}
-              radius={p.radius}
-              strokeWidth={p.strokeWidth}
-            />
-          );
-        })}
+        {data.map((p, i) => (
+          <Donut
+            key={i}
+            percentage={p.percentage}
+            color={p.color}
+            delay={500 + 100 * i}
+            max={p.max}
+            radius={p.radius}
+            strokeWidth={p.strokeWidth}
+          />
+        ))}
       </View>
-      <View className=" flex flex-col w-full h-[43%] items-center justify-center p-[6%]">
-        <Text
-          className="text-black text-center
-text-opacity-70
-text-xl
-font-medium"
-        >
-          Based on your provided information, our assessment indicates that you
-          are at :
+      <View style={styles.bottomContainer}>
+        <Text style={styles.risksText}>
+          Selon les informations fournies, notre évaluation indique que vous
+          êtes à :
         </Text>
-        <View className="w-[80%] h-[34%] my-[3%]">
+        <View style={styles.risksContainer}>
           <Risks />
         </View>
-        <Text
-          className="text-blue-500
-text-opacity-90
-text-sm
-font-normal"
-        >
-          Ps : This model isn't a replacement for a doctor. Consult a healthcare
-          professional for a thorough evaluation.
+        <Text style={styles.disclaimerText}>
+          Remarque : Ce modèle n'est pas un substitut à un avis médical.
+          Consultez un professionnel de la santé pour une évaluation
+          approfondie.
         </Text>
       </View>
     </View>
@@ -81,15 +73,73 @@ font-normal"
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#fff",
-    padding: 8,
+    backgroundColor: "#ffffff",
+    padding: 20,
   },
-  paragraph: {
-    margin: 24,
+  backButton: {
+    position: "absolute",
+    top: 20,
+    left: 20,
+    zIndex: 1,
+  },
+  backButtonText: {
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+    color: "black",
+    fontSize: 18,
+  },
+  logoContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logo: {
+    width: "60%",
+    height: "80%",
+  },
+  middleContainer: {
+    flex: 2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bullsContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    width: "70%",
+  },
+  wireframeContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    width: "60%",
+  },
+  bottomContainer: {
+    flex: 2,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "6%",
+  },
+  risksText: {
+    color: "gray",
+    
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
+    opacity: 0.7,
+    marginBottom: 10,
+  },
+  risksContainer: {
+    width: "80%",
+    height: "34%",
+    marginVertical: "3%",
+  },
+  disclaimerText: {
+    color: "#128AEA",
+    fontSize: 14,
+    textAlign: "center",
+    opacity: 0.9,
+    marginTop: 10,
   },
 });

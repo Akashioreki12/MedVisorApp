@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-const doc = require("../app/assets/Images/doctora.png");
+const doc = require("../app/assets/Images/doctora1.png");
 export default function Page() {
   return (
     <LinearGradient
@@ -11,14 +11,15 @@ export default function Page() {
     >
       <TouchableOpacity
         style={{ flex: 1 }}
-        onPress={() => router.push("/slide1")}
+        onPress={() => router.push("/StackNavigator")}
+        
       >
         <View
           style={{
             position: "absolute",
-            width: "80%",
+            width: "75%",
             height: "100%",
-            top: 50,
+            top: 100,
             right: 0,
           }}
         >
@@ -28,7 +29,7 @@ export default function Page() {
             style={{ width: "100%", height: "100%" }}
           />
         </View>
-        <View style={{ marginLeft: "6%", marginTop: "16%" }}>
+        <View style={{ marginLeft: "6%", marginTop: "12%" }}>
           <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
             Future de{" "}
           </Text>

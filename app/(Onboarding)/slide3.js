@@ -7,7 +7,7 @@ import Silder from "../Components/sliderIcon3";
 import { router } from "expo-router";
 const slide3 = () => {
   return (
-    <View className=" items-center justify-center  ">
+    <View className=" items-center justify-center h-screen ">
       <View className=" w-full h-[7%] items-center justify-center">
         <Image
           resizeMode="contain"
