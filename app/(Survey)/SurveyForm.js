@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CrossMarkIcon from '../assets/Icons/CrossMarkIcon';
 import StepIndicator from 'react-native-step-indicator';
 import { Modal } from 'react-native';
 import { router } from "expo-router";
+import { Link, useHistory } from 'react-router-dom';
 // Import your different survey screens here
 import InformationScreen from './InformationSurvey';
 import HealthScreen from './HealthSurvey';
@@ -12,6 +13,7 @@ import LeftArrowIcon from '../assets/Icons/LeftArrowIcon';
 import BubblesIcon from '../assets/Icons/BubblesIcon';
 function SurveyForm(props)
 {   
+    const [prediction, setPrediction] = useState(0);
     const [gender, setGender] = useState("Male");
     const [age, setAge] = useState(0);
     const [married, setMarried] = useState("Yes");
@@ -66,10 +68,7 @@ function SurveyForm(props)
     const sendDataToApi = async () => {
         try
         {
-      
-        
     const apiEndpoint = 'http://172.20.10.5:8080/medicalimageprocessing/v1/surveys/create';
-   
     const requestData = {
         gender: gender,
       workType: work,
@@ -89,20 +88,22 @@ function SurveyForm(props)
       },
       body: JSON.stringify(requestData),
     });
-
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const responseData = await response.json();
     console.log('API Response:', responseData);
-  } catch (error) {
+            setPrediction(responseData.result);
+        } catch (error)
+        {
     console.error('Error sending data to API:', error.message);
   }
 };
 
     const submit = () =>
     {
-
+                sendDataToApi();
+         console.log(prediction);
         console.log(gender);
         console.log(age);
         console.log(work);
@@ -113,9 +114,10 @@ function SurveyForm(props)
         console.log(smoke);
         console.log(location);
         console.log(glucoseLevel);
-        sendDataToApi();
-        router.push("/Result");
-
+        router.push({
+            pathname: "/Result",
+            query : {result:prediction}
+        });
     }
 
 
@@ -170,6 +172,7 @@ function SurveyForm(props)
         } else if (currentPosition === labels.length - 1) {
             setModalVisible(true);
             submit();
+
 
         }
     };

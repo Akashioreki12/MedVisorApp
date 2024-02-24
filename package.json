@@ -29,7 +29,8 @@
     "react-native-screens": "~3.22.0",
     "react-native-step-indicator": "^1.0.3",
     "react-native-svg": "^14.0.0",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "react-router-dom": "^6.20.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

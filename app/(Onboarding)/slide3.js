@@ -5,7 +5,6 @@ import doc1 from "../assets/Images/doc3.png";
 import Backball from "../Components/backball3";
 import Silder from "../Components/sliderIcon3";
 import { router } from "expo-router";
-
 const slide3 = () => {
   return (
     <View className=" items-center justify-center  ">

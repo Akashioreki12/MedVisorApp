@@ -25,9 +25,13 @@ function HealthSurvey({heartDiseaseSetter,smokeSetter,glucoseLevelSetter,bmiLeve
             <View style={styles.surveyQuestion2}>
 
                 <View style={styles.questionContainer}>
-                                                    <Text style={styles.question}>How often do you smoke ?</Text>
-
-
+                    <Text style={styles.question}>How often do you smoke ?</Text>
+                    <View style={styles.textDetailsContainer}>
+                        <Text style={styles.textDetails1}>Never</Text>
+                        <Text style={styles.textDetails2}>Formerly</Text>
+                        <Text style={styles.textDetails3}>Smokes</Text>
+                        <Text style={styles.textDetails4}>Unknown</Text>
+                    </View>
                 </View>
 
                 <View style={styles.answerContainer}>
@@ -39,7 +43,8 @@ function HealthSurvey({heartDiseaseSetter,smokeSetter,glucoseLevelSetter,bmiLeve
             <View style={styles.surveyQuestion3}>
 
                 <View style={styles.questionContainer}>
-                                                    <Text style={styles.question}>How much is your glucose level ?</Text>
+                    <Text style={styles.question}>How much is your glucose level ?</Text>
+                    <Text style={styles.unity}>Glucose level measured in mg/dL</Text>
 
 
                 </View>
@@ -51,6 +56,7 @@ function HealthSurvey({heartDiseaseSetter,smokeSetter,glucoseLevelSetter,bmiLeve
 
                 <View style={styles.questionContainer}>
                     <Text style={styles.question}>How much is your BMI level ?</Text>
+                    <Text style={styles.unity}>BMI level measured in kg/m²</Text>
 
                     
 
@@ -100,5 +106,37 @@ const styles = StyleSheet.create({
         alignItems: 'center',  
                 justifyContent : 'center',
 
+    },
+
+    textDetailsContainer: {
+        marginTop : 10,
+        display: 'flex',
+        flexDirection: 'row',
+    },
+
+     textDetails1: {
+         fontSize: 15,
+         marginLeft : 30,
+    },
+     
+      textDetails2: {
+         fontSize: 15,
+         marginLeft : 40,
+    },
+      
+       textDetails3: {
+         fontSize: 15,
+         marginLeft : 40,
+    },
+        textDetails4: {
+         fontSize: 15,
+         marginLeft : 40,
+    },
+        
+    unity: {
+
+        color: '#979797',
+        marginTop : 5,
+        
     },
 })

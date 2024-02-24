@@ -10,7 +10,7 @@ function InformationSurvey({genderSetter,ageSetter,marriedSetter,locationSetter}
             
             <View style={styles.surveyQuestion1}>
                 <View style={styles.questionContainer}>
-                    <Text style={styles.question}>What do you identify as ?</Text>
+                    <Text style={styles.question}>What is your gender ?</Text>
                     
                 </View>
                 <View style={styles.answerContainer}>
@@ -44,15 +44,15 @@ function InformationSurvey({genderSetter,ageSetter,marriedSetter,locationSetter}
                 </View>            
             </View>
             <View style={styles.surveyQuestion4}>
-
-                <View style={styles.questionContainer}>
                     <Text style={styles.question}>Where do you live ?</Text>
-
-                    
-
+                    <View style={styles.questionContainer}>
+                    <View style={styles.textDetailsContainer}>
+                        <Text style={styles.textDetails}>Rural</Text>
+                        <Text style={styles.textDetails}>Urban</Text>
+                    </View>
                 </View>
 <View style={styles.answerContainer}>
-                <SimpleBoxChoice setChoice={locationSetter} leftChoiceLabel={"Rural"} rightChoiceLabel={"Urban"}/>          
+                    <SimpleBoxChoice setChoice={locationSetter} leftChoiceLabel={"Rural"} rightChoiceLabel={"Urban"} /> 
                 </View>
             </View>
         </View>
@@ -93,5 +93,17 @@ const styles = StyleSheet.create({
     answerContainer: {
         alignItems: 'center',  
         justifyContent : 'center',
+    },
+    textDetailsContainer: {
+        marginTop : 10,
+        paddingLeft: 110,
+        paddingRight : 135,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+
+    textDetails: {
+        fontSize: 15,
     },
 });
