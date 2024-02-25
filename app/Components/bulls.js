@@ -1,6 +1,7 @@
 import * as React from "react";
 import Svg, { Rect, Path } from "react-native-svg";
 
+
 function SvgComponent(props) {
   return (
     <Svg

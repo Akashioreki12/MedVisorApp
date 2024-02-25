@@ -1,49 +1,54 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import MultipleBoxChoice from '../Components/MultipleBoxChoice';
+import ValueInput from '../Components/ValueInput';
 
-import SuitCaseIcon from '../assets/Icons/SuitCaseIcon';
-import GovernmentIcon from '../assets/Icons/GovernmentIcon';
-import EmployeeIcon from '../assets/Icons/EmployeeIcon';
-import ChildrenIcon from '../assets/Icons/ChildrenIcon';
-import ChoiceButton from '../Components/ChoiceButton';
-function WorkSurvey({workSetter, hypertensionSetter}) {
+
+function WorkSurvey({bmiLevelSetter,glucoseLevelSetter,weightSetter}) {
     return (
-         <View style={styles.container}>
-            <View style={styles.surveyQuestion1}>
+        <View style={styles.container}>
+            
+             <View style={styles.surveyQuestion4}>
+
                 <View style={styles.questionContainer}>
-                    <Text style={styles.question}>What is your work type ?</Text>
-                     <View style={styles.textDetailsContainer}>
-                        <Text style={styles.textDetails1}>Private</Text>
-                        <Text style={styles.textDetails2}>Government</Text>
-                        <Text style={styles.textDetails3}>Self</Text>
-                        <Text style={styles.textDetails4}>Children</Text>
-                    </View>
-                </View>
-                <View style={styles.answerContainer}>
-                                    <MultipleBoxChoice leftIcon={<SuitCaseIcon/>} centerLeftIcon={<GovernmentIcon/>} centerRightIcon={<EmployeeIcon/>} rightIcon={<ChildrenIcon/>} setChoice={workSetter} leftLabelChoice={"Private"} centerLeftLabelChoice={"Govt_job"} centerRightLabelChoice={"Self-employed"} rightLabelChoice={"children"}/>          
-                </View>
-            </View>
-            <View style={styles.surveyQuestion2}>
-                <View style={styles.questionContainer}>
-                    <Text style={styles.question}>Do you have hypertension ?</Text>
+                    <Text style={styles.question}>How much is your height ?</Text>
+                    <Text style={styles.unity}>Height measured in (m) (1.4m-2.2m)</Text>
+
                     
+
                 </View>
                 <View style={styles.answerContainer}>
-                                    <ChoiceButton leftChoiceLabel={"No"} rightChoiceLabel={'Yes'} setChoice={hypertensionSetter}/>            
+                    
+                    <ValueInput setChoice={bmiLevelSetter} type="float"/>
                 </View>
             </View>
-            <View style={styles.surveyQuestion3}>
-                <View style={styles.questionContainer}>
-                </View>
-                <View style={styles.answerContainer}>
-                </View>            
-            </View>
+
             <View style={styles.surveyQuestion4}>
+
                 <View style={styles.questionContainer}>
+                    <Text style={styles.question}>How much is your weight ?</Text>
+                    <Text style={styles.unity}>Weight measured in (kg) (40kg-200kg)</Text>
+
+                    
+
                 </View>
-                <View style={styles.answerContainer}>                    
+                <View style={styles.answerContainer}>
+                    
+                    <ValueInput setChoice={weightSetter} type="float"/>
                 </View>
+            </View>
+
+
+        
+            <View style={styles.surveyQuestion3}>
+
+                <View style={styles.questionContainer}>
+                    <Text style={styles.question}>How much is your glucose level ?</Text>
+                    <Text style={styles.unity}>Glucose measured in g/dL (70g/dL-140g/dL)</Text>
+
+                </View>
+                <View style={styles.answerContainer}>
+                    <ValueInput setChoice={glucoseLevelSetter} type="float"/>
+                </View>            
             </View>
         </View>
 
@@ -53,6 +58,10 @@ function WorkSurvey({workSetter, hypertensionSetter}) {
 export default WorkSurvey;
 
 const styles = StyleSheet.create({
+
+    unity: {
+        color : 'rgba(70,119,238,0.7)',
+    },
    container: {
         height :'100%',
     },

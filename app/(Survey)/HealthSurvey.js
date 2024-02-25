@@ -2,13 +2,16 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import ChoiceButton from '../Components/ChoiceButton';
 import MultipleBoxChoice from '../Components/MultipleBoxChoice';
-import ValueInput from '../Components/ValueInput';
 import BoldCrossIcon from '../assets/Icons/BoldCrossIcon';
 import NoSmokeIcon from '../assets/Icons/NoSmokeIcon';
 import SmokeIcon from '../assets/Icons/SmokeIcon';
 import UnknownIcon from '../assets/Icons/UnknownIcon';
+import SuitCaseIcon from '../assets/Icons/SuitCaseIcon';
+import GovernmentIcon from '../assets/Icons/GovernmentIcon';
+import EmployeeIcon from '../assets/Icons/EmployeeIcon';
+import ChildrenIcon from '../assets/Icons/ChildrenIcon';
 
-function HealthSurvey({heartDiseaseSetter,smokeSetter,glucoseLevelSetter,bmiLevelSetter}) {
+function HealthSurvey({heartDiseaseSetter,smokeSetter,hypertensionSetter,workSetter}) {
     return (
          <View style={styles.container}>
             
@@ -40,30 +43,30 @@ function HealthSurvey({heartDiseaseSetter,smokeSetter,glucoseLevelSetter,bmiLeve
 
             
             </View>
-            <View style={styles.surveyQuestion3}>
-
+            <View style={styles.surveyQuestion2}>
                 <View style={styles.questionContainer}>
-                    <Text style={styles.question}>How much is your glucose level ?</Text>
-                    <Text style={styles.unity}>Glucose level measured in mg/dL</Text>
-
-
+                    <Text style={styles.question}>Do you have hypertension ?</Text>
+                    
                 </View>
                 <View style={styles.answerContainer}>
-                    <ValueInput setChoice={glucoseLevelSetter}/>
-                </View>            
+                                    <ChoiceButton leftChoiceLabel={"No"} rightChoiceLabel={'Yes'} setChoice={hypertensionSetter}/>            
+                </View>
             </View>
-            <View style={styles.surveyQuestion4}>
+            
+           
 
+             <View style={styles.surveyQuestion1}>
                 <View style={styles.questionContainer}>
-                    <Text style={styles.question}>How much is your BMI level ?</Text>
-                    <Text style={styles.unity}>BMI level measured in kg/m²</Text>
-
-                    
-
+                    <Text style={styles.question}>What is your work type ?</Text>
+                     <View style={styles.textDetailsContainer}>
+                        <Text style={styles.textDetails1}>Private</Text>
+                        <Text style={styles.textDetails2}>Government</Text>
+                        <Text style={styles.textDetails3}>Self</Text>
+                        <Text style={styles.textDetails4}>Children</Text>
+                    </View>
                 </View>
                 <View style={styles.answerContainer}>
-                    
-                    <ValueInput setChoice={bmiLevelSetter}/>
+                                    <MultipleBoxChoice leftIcon={<SuitCaseIcon/>} centerLeftIcon={<GovernmentIcon/>} centerRightIcon={<EmployeeIcon/>} rightIcon={<ChildrenIcon/>} setChoice={workSetter} leftLabelChoice={"Private"} centerLeftLabelChoice={"Govt_job"} centerRightLabelChoice={"Self-employed"} rightLabelChoice={"children"}/>          
                 </View>
             </View>
         </View>

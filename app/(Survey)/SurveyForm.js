@@ -1,18 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CrossMarkIcon from '../assets/Icons/CrossMarkIcon';
 import StepIndicator from 'react-native-step-indicator';
 import { Modal } from 'react-native';
 import { router } from "expo-router";
-import { Link, useHistory } from 'react-router-dom';
-// Import your different survey screens here
 import InformationScreen from './InformationSurvey';
 import HealthScreen from './HealthSurvey';
 import WorkScreen from './WorkSurvey';
 import LeftArrowIcon from '../assets/Icons/LeftArrowIcon';
 import BubblesIcon from '../assets/Icons/BubblesIcon';
+import MessageFeedBack from '../Components/MessageFeedback';
+import { useNavigation } from '@react-navigation/native';
 function SurveyForm(props)
 {   
+    
+
+      const [modalTimeout, setModalTimeout] = useState(null);
+
+
+     const [isModal2Visible, setModal2Visible] = useState(false);
+
+    const handleSubmit = () => {
+    toggleModal();
+    clearTimeout(modalTimeout);
+  };
+
+    const toggleModal = () => {
+    setModal2Visible(!isModal2Visible);
+    };
+
+
+    useEffect(() => {
+  if (isModal2Visible) {
+    const timeoutId = setTimeout(() => {
+      toggleModal();
+    }, 1000);
+    setModalTimeout(timeoutId);
+  }
+   }, [isModal2Visible]);
+
+
     const [prediction, setPrediction] = useState(0);
     const [gender, setGender] = useState("Male");
     const [age, setAge] = useState(0);
@@ -21,9 +48,63 @@ function SurveyForm(props)
     const [heartDisease, setHeartDisease] = useState(0);
     const [smoke, setSmoke] = useState("smokes");
     const [glucoseLevel, setGlucoseLevel] = useState(0);
+    const [weight, setWeight] = useState(0);
     const [bmiLevel, setBMIlevel] = useState(0);
+    const [height, setHeight] = useState(0);
     const [work, setWork] = useState("Private");
     const [hypertension, setHypertension] = useState(0);
+
+    const isValidAge = (age,minValue,maxValue) => {
+       return Number.isInteger(age) && age >= minValue && age <= maxValue;
+}
+
+    
+
+    const isValidHeight = (height,minValue,maxValue)=> {
+        if (typeof height !== 'number' || isNaN(height)) {
+            return false;
+        }
+        const decimalPart = (height.toString().split('.')[1] || '').length;
+        if (decimalPart > 2) {
+            return false;
+        }
+
+        if (height < minValue || height > maxValue) {
+            return false;
+        }
+        return true;
+    }
+    const isValidWeight = (weight,minValue,maxValue)=> {
+        if (typeof weight !== 'number' || isNaN(weight))
+        {
+            return false;
+        }
+        const decimalPart = (weight.toString().split('.')[1] || '').length;
+        if (decimalPart > 2) {
+            return false;
+        }
+
+        if (weight < minValue || weight > maxValue) {
+            return false;
+        }
+        return true;
+    }
+
+    const isValidGlucose = (glucose,minValue,maxValue)=> {
+        if (typeof glucose !== 'number' || isNaN(glucose)) {
+            return false;
+        }
+        const decimalPart = (glucose.toString().split('.')[1] || '').length;
+        if (decimalPart > 2) {
+            return false;
+        }
+
+        if (glucose < minValue || glucose > maxValue) {
+            return false;
+        }
+        return true;
+    }
+
     const handleHypertensionSelect = (hypertension) =>
     {
         setHypertension(hypertension);
@@ -56,10 +137,21 @@ function SurveyForm(props)
     {
         setGlucoseLevel(GlucoseLevel);
     }
+
+    const handleWeightSelect = (Weight) =>
+    {
+        setWeight(Weight);
+        
+    }
     const handleBMILevelSelect = (BMILevel) =>
     {
         setBMIlevel(BMILevel);
     }
+    const handleHeightSelect = (Height) =>
+    {
+        setHeight(Height);
+    }
+
     const handleWorkSelect = (Work) =>
     {
         setWork(Work);
@@ -68,7 +160,7 @@ function SurveyForm(props)
     const sendDataToApi = async () => {
         try
         {
-    const apiEndpoint = 'http://172.20.10.5:8080/medicalimageprocessing/v1/surveys/create';
+    const apiEndpoint = 'http://192.168.11.114:8080/medicalimageprocessing/v1/surveys/create';
     const requestData = {
         gender: gender,
       workType: work,
@@ -76,10 +168,10 @@ function SurveyForm(props)
       smokingStatus: smoke,
       age: age,
       avgGlucoseLevel: glucoseLevel,
-      bmi: bmiLevel,
+      bmi:parseFloat((weight / (height * height)).toFixed(2)),
       hypertension: hypertension === "Yes" ? 1 : 0,
       heartDisease: heartDisease === "Yes" ? 1 : 0,
-      everMarried: married === "Yes" ? 1 : 0, 
+      everMarried: married, 
 }
     const response = await fetch(apiEndpoint, {
       method: 'POST',
@@ -103,26 +195,11 @@ function SurveyForm(props)
     const submit = () =>
     {
                 sendDataToApi();
-         console.log(prediction);
-        console.log(gender);
-        console.log(age);
-        console.log(work);
-        console.log(married);
-        console.log(hypertension);
-        console.log(heartDisease);
-        console.log(bmiLevel);
-        console.log(smoke);
-        console.log(location);
-        console.log(glucoseLevel);
         router.push({
             pathname: "/Result",
-            query : {result:prediction}
+            params : 8
         });
     }
-
-
-
-
     const [modalVisible, setModalVisible] = useState(false);
     const labels = ["Information", "Health", "Work"];
     const customStyles = {
@@ -144,9 +221,9 @@ function SurveyForm(props)
             case 0:
                 return <InformationScreen genderSetter={handleGenderSelect} ageSetter={handleAgeSelect} marriedSetter={handleMarriedSelect} locationSetter={handleLocationSelect}  />;
             case 1:
-                return <HealthScreen heartDiseaseSetter={handleDiseaseSelect} smokeSetter={handleSmokeSelect} glucoseLevelSetter={handleGlucoseLevelSelect} bmiLevelSetter={handleBMILevelSelect} />;
+                return <HealthScreen heartDiseaseSetter={handleDiseaseSelect} smokeSetter={handleSmokeSelect}  workSetter={handleWorkSelect} hypertensionSetter={handleHypertensionSelect} />;
             case 2:
-                return <WorkScreen  workSetter={handleWorkSelect} hypertensionSetter={handleHypertensionSelect}/>;
+                return <WorkScreen  bmiLevelSetter={handleHeightSelect} glucoseLevelSetter={handleGlucoseLevelSelect} weightSetter={handleWeightSelect} />;
             default:
                 return null;
         }
@@ -167,21 +244,44 @@ function SurveyForm(props)
     };
 
    const onNextPress = () => {
-        if (currentPosition < labels.length - 1) {
-            setCurrentPosition(currentPosition + 1);
-        } else if (currentPosition === labels.length - 1) {
-            setModalVisible(true);
-            submit();
+       if (currentPosition < labels.length - 1)
+       {
+           if (currentPosition == 0)
+           {
+               
+               if (isValidAge(age,18,100))
+               {
+                   setCurrentPosition(currentPosition + 1);
 
+               }
+               else
+               {
+                    handleSubmit();
+               }
+                    
+           }
+           else if (currentPosition == 1)
+           {
+               setCurrentPosition(currentPosition + 1);
 
+           }
+       } else if (currentPosition === labels.length - 1)
+       {
+           
+
+           if (isValidGlucose(glucoseLevel,70,140) && isValidHeight(height,1.4,2.2) && isValidWeight(weight,40,200))
+{
+               submit();
+           }
+           else
+           {
+                handleSubmit();
+           }
         }
     };
-
     const closeModal = () => {
         setModalVisible(false);
     };
-
-
     const onPrevPress = () => {
         if (currentPosition > 0) {
             setCurrentPosition(currentPosition - 1);
@@ -238,9 +338,60 @@ function SurveyForm(props)
             <TouchableOpacity style={styles.buttonContainer} onPress={onNextPress}>
                 <Text style={styles.textButton}>{renderButtonText()}</Text>
             </TouchableOpacity>
+
+            <MessageFeedBack
+        isVisible={isModal2Visible}
+        closeModal={toggleModal}
+                handleSubmit={handleSubmit}
+                message="Invalid choice"
+            />
+            
+
+        
+            
         </View>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default SurveyForm;
 
@@ -249,7 +400,7 @@ modalContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.3)', // semi-transparent background
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
     },
     modalContent: {
         padding: 20,
@@ -270,20 +421,18 @@ modalContainer: {
         alignItems: 'center',
         paddingTop : '5%',
     },
-
     textButton: {
         color: '#fff',
         fontSize: 20,
       fontWeight : '500',
     },
-
     iconContainer: {
         paddingLeft: '2%',
       paddingTop : '4%',  
     },
-
     surveyComplete: {
         fontSize: 15,
-      marginTop : 20,  
+        marginTop: 20,  
+        color: '#fff',
     },
 });

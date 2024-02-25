@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ChoiceButton from '../Components/ChoiceButton';
 import SimpleBoxChoice from '../Components/SimpleBoxChoice';
-import BirthPicker from '../Components/BirthPicker';
+import ValueInput from '../Components/ValueInput';
+
 
 function InformationSurvey({genderSetter,ageSetter,marriedSetter,locationSetter}) {
     return (
@@ -18,20 +19,21 @@ function InformationSurvey({genderSetter,ageSetter,marriedSetter,locationSetter}
                 </View>
             </View>
 
-            <View style={styles.surveyQuestion2}>
+             <View style={styles.surveyQuestion4}>
 
                 <View style={styles.questionContainer}>
-                                                    <Text style={styles.question}>What is your age ?</Text>
+                    <Text style={styles.question}>What is your age ?</Text>
+                    <Text style={styles.unity}>Age must be between 18 and 100</Text>
 
+                    
 
                 </View>
-
                 <View style={styles.answerContainer}>
-                                    <BirthPicker setChoice={ageSetter}/>          
+                    
+                    <ValueInput setChoice={ageSetter} type="int"/>
                 </View>
-
-            
             </View>
+
             <View style={styles.surveyQuestion3}>
 
                 <View style={styles.questionContainer}>
@@ -61,6 +63,10 @@ function InformationSurvey({genderSetter,ageSetter,marriedSetter,locationSetter}
 
 export default InformationSurvey;
 const styles = StyleSheet.create({
+
+    unity: {
+        color:'rgba(70,119,238,0.7)',   
+    },
 
 
     container: {
