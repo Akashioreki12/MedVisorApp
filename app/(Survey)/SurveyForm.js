@@ -160,7 +160,7 @@ function SurveyForm(props)
     const sendDataToApi = async () => {
         try
         {
-    const apiEndpoint = 'http://192.168.11.114:8080/medicalimageprocessing/v1/surveys/create';
+    const apiEndpoint = 'http://192.168.70.204:8080/medicalimageprocessing/v1/surveys/create';
     const requestData = {
         gender: gender,
       workType: work,

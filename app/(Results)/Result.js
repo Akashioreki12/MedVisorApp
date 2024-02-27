@@ -6,26 +6,47 @@ import Bulls from "../Components/bulls";
 import Wireframe from "../Components/wireframe";
 import Risks from "../Components/risks";
 import { router } from "expo-router";
+import { useState,useEffect } from "react";
+
+
+export default function App()
+{
+
+  const [percentage, setPercentage] = useState(70);
+     useEffect(() => {
+    // Function to retrieve notifications
+    const getNotifications = async () => {
+      try {
+        const response = await fetch('http://192.168.70.204:8080/medicalimageprocessing/v1/surveys/find'); // Replace with your server URL
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setPercentage(data);
+        } else {
+          console.error('Failed to fetch notifications');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getNotifications(); // Call the getNotifications function when the component mounts
+     }, []);
+  
+
+  const navigateToHome = () => {
+    router.replace("/SurveyForm");
+  };
+
 
 const data = [
   {
-    percentage: 70,
+    percentage: percentage,
     color: "#147FDF",
     max: 100,
     radius: 120,
     strokeWidth: 20,
   },
 ];
-
-export default function App()
-{
-
-  
-  
-
-  const navigateToHome = () => {
-    router.replace("/SurveyForm");
-  };
 
   return (
     <View style={styles.container}>
